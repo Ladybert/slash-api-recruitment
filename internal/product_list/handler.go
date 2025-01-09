@@ -22,7 +22,7 @@ type Product struct {
 }
 
 func GetProductsHandler(c *gin.Context, db *sql.DB) {
-	query := "SELECT id, name, color, size, stock, prize FROM products"
+	query := "SELECT id, name, color, size, stock, price FROM products"
 
 	rows, err := db.Query(query)
 	if err != nil {
@@ -62,7 +62,7 @@ func GetProductsHandler(c *gin.Context, db *sql.DB) {
 
 func SearchProductByIDhandler(c *gin.Context, db *sql.DB) {
 	id := c.Param("id")
-	query := "SELECT id, name, color, size, stock, prize FROM products WHERE id = ?"
+	query := "SELECT id, name, color, size, stock, price FROM products WHERE id = ?"
 
 	var product Product
 	err := db.QueryRow(query, id).Scan(&product.ID, &product.Name, &product.Color, &product.Size, &product.Stock, &product.Prize)
